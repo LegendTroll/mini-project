@@ -14,11 +14,12 @@ def home():
 @login_required
 def add_task():
     task_data = request.form.get('task')
+    task_date = request.form.get('date')
     
     if len(task_data) < 1:
         flash('Task is too short!', category='error')
     else:
-        new_task = Task(data=task_data, user_id=current_user.id)
+        new_task = Task(data=task_data, date=task_date, user_id=current_user.id)
         db.session.add(new_task)
         db.session.commit()
         flash('Task added!', category='success')
