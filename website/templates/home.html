@@ -92,13 +92,14 @@
         <a href="/"><img src="{{ url_for('static', filename="things-do-sticker.webp") }}" class="center"></a>
         <h1>Welcome, {{ user.username }}!</h1>
         <form action="{{ url_for('views.add_task') }}" method="POST">
-            <input type="text" name="task" placeholder="Add a new task..." required>
+            <input type="text" name="task" placeholder="Add a new task... conflict" required>
+            <input type="date" name="date" required> <!-- Date input field added here -->
             <button type="submit">Add Task</button>
         </form>
         <ul>
             {% for task in user.tasks %}
                 <li>
-                    {{ task.data }}
+                    {{ task.data }} - {{ task.date }}
                     <a href="{{ url_for('views.delete_task', id=task.id) }}" class="delete-btn">Delete</a>
                 </li>
             {% endfor %}
